@@ -13,15 +13,12 @@ interface RouteState {
 function Coin() {
   const [loading, setLoading] = useState(true);
   const { coinId } = useParams<RouteParams>();
-  const {
-    state: { name },
-  } = useLocation<RouteState>();
-  console.log(name);
+  const { state } = useLocation<RouteState>();
 
   return (
     <Container>
       <Header>
-        <Title>코인 {coinId}</Title>
+        <Title>{state?.name || "Loading..."}</Title>
       </Header>
       {loading ? <Loader>Loading...</Loader> : null}
     </Container>
